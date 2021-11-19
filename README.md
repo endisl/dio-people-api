@@ -1,3 +1,7 @@
+<h2>Projeto</h2>
+O projeto foi refeito para uma melhor revisão dos conceitos apresentados.
+E foram adicionados os arquivos schema.sql e data.sql em src/main/resources para definir o modelo relacional das tabelas e possibilitar um preloading dos dados da aplicação.
+
 <h2>Digital Innovation: Expert class - Desenvolvendo um sistema de gerenciamento de pessoas em API REST com Spring Boot</h2>
 
 Nesta live coding vamos desenvolver um pequeno sistema para o gerenciamento de pessoas de uma empresa através de uma API REST, criada com o Spring Boot.
