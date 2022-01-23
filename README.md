@@ -1,6 +1,9 @@
-<h2>Projeto</h2>
-O projeto foi refeito para uma melhor revisão dos conceitos apresentados.
-E foram adicionados os arquivos schema.sql e data.sql em src/main/resources para definir o modelo relacional das tabelas e possibilitar um preloading dos dados da aplicação.
+## Contribuições ao API REST Pessoas</h2>
+Foram realizadas as seguintes melhorias ao projeto:  
+- Escrita de testes unitários com JUnit, Hamcrest e Mockito.  
+- Verificação estática do código via SonarCloud (ver badge).  
+
+## 
 
 <h2>Digital Innovation: Expert class - Desenvolvendo um sistema de gerenciamento de pessoas em API REST com Spring Boot</h2>
 
