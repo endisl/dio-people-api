@@ -1,6 +1,5 @@
 package one.digitalinnovation.personapi.services;
 
-import one.digitalinnovation.personapi.mapper.PersonMapper;
 import one.digitalinnovation.personapi.dto.request.PersonDTO;
 import one.digitalinnovation.personapi.dto.response.MessageResponseDTO;
 import one.digitalinnovation.personapi.entity.Person;
@@ -13,28 +12,22 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
 import static one.digitalinnovation.personapi.utils.PersonUtils.createFakeDTO;
 import static one.digitalinnovation.personapi.utils.PersonUtils.createFakeEntity;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Mockito.any;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class PersonServiceTest {
 
     @Mock
     private PersonRepository personRepository;
-
-    @Mock
-    private PersonMapper personMapper;
 
     @InjectMocks
     private PersonService personService;
@@ -61,6 +54,9 @@ public class PersonServiceTest {
         when(personRepository.findById(expectedSavedPerson.getId())).thenReturn(Optional.of(expectedSavedPerson));
 
         PersonDTO personDTO = personService.findById(expectedSavedPerson.getId());
+        //Just here I need to format the saved birthdate in order to match the DTO format
+        LocalDate birthDate = LocalDate.parse(personDTO.getBirthDate(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        personDTO.setBirthDate(birthDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
 
         assertEquals(expectedPersonDTO, personDTO);
 
@@ -142,7 +138,7 @@ public class PersonServiceTest {
     @Test
     void testGivenInvalidPersonIdThenReturnSuccessOnDelete() throws PersonNotFoundException {
         var invalidPersonId = 1L;
-        
+
         when(personRepository.findById(invalidPersonId))
                 .thenReturn(Optional.ofNullable(any(Person.class)));
 

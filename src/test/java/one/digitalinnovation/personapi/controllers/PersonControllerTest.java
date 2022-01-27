@@ -23,10 +23,7 @@ import static one.digitalinnovation.personapi.utils.PersonUtils.asJsonString;
 import static one.digitalinnovation.personapi.utils.PersonUtils.createFakeDTO;
 import static org.hamcrest.core.Is.is;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -54,13 +51,13 @@ public class PersonControllerTest {
     @Test
     void testWhenPOSTIsCalledThenAPersonShouldBeCreated() throws Exception {
         PersonDTO expectedPersonDTO = createFakeDTO();
-        MessageResponseDTO expectedResponseMessage = createMessageResponse("Person successfully created with ID", 1L);
+        MessageResponseDTO expectedResponseMessage = createMessageResponse("Created person with ID", 1L);
 
         when(personService.createPerson(expectedPersonDTO)).thenReturn(expectedResponseMessage);
 
         mockMvc.perform(post(PEOPLE_API_URL_PATH)
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(asJsonString(expectedPersonDTO)))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(asJsonString(expectedPersonDTO)))
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.message", is(expectedResponseMessage.getMessage())));
     }
@@ -74,11 +71,11 @@ public class PersonControllerTest {
         when(personService.findById(expectedValidId)).thenReturn(expectedPersonDTO);
 
         mockMvc.perform(get(PEOPLE_API_URL_PATH + "/" + expectedValidId)
-                .contentType(MediaType.APPLICATION_JSON))
+                        .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id", is(1)))
-                .andExpect(jsonPath("$.firstName", is("Rodrigo")))
-                .andExpect(jsonPath("$.lastName", is("Peleias")));
+                .andExpect(jsonPath("$.firstName", is("Endi")))
+                .andExpect(jsonPath("$.lastName", is("Luamba")));
     }
 
     @Test
@@ -90,7 +87,7 @@ public class PersonControllerTest {
         when(personService.findById(expectedValidId)).thenThrow(PersonNotFoundException.class);
 
         mockMvc.perform(get(PEOPLE_API_URL_PATH + "/" + expectedValidId)
-                .contentType(MediaType.APPLICATION_JSON))
+                        .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNotFound());
     }
 
@@ -104,24 +101,24 @@ public class PersonControllerTest {
         when(personService.listAll()).thenReturn(expectedPeopleDTOList);
 
         mockMvc.perform(get(PEOPLE_API_URL_PATH)
-                .contentType(MediaType.APPLICATION_JSON))
+                        .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].id", is(1)))
-                .andExpect(jsonPath("$[0].firstName", is("Rodrigo")))
-                .andExpect(jsonPath("$[0].lastName", is("Peleias")));
+                .andExpect(jsonPath("$[0].firstName", is("Endi")))
+                .andExpect(jsonPath("$[0].lastName", is("Luamba")));
     }
 
     @Test
     void testWhenPUTIsCalledThenAPersonShouldBeUpdated() throws Exception {
         var expectedValidId = 1L;
         PersonDTO expectedPersonDTO = createFakeDTO();
-        MessageResponseDTO expectedResponseMessage = createMessageResponse("Person successfully updated with ID", 1L);
+        MessageResponseDTO expectedResponseMessage = createMessageResponse("Updated person with ID", 1L);
 
         when(personService.updateById(expectedValidId, expectedPersonDTO)).thenReturn(expectedResponseMessage);
 
         mockMvc.perform(put(PEOPLE_API_URL_PATH + "/" + expectedValidId)
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(asJsonString(expectedPersonDTO)))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(asJsonString(expectedPersonDTO)))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.message", is(expectedResponseMessage.getMessage())));
     }
@@ -131,7 +128,7 @@ public class PersonControllerTest {
         var expectedValidId = 1L;
 
         mockMvc.perform(delete(PEOPLE_API_URL_PATH + "/" + expectedValidId)
-                .contentType(MediaType.APPLICATION_JSON))
+                        .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNoContent());
     }
 
