@@ -16,9 +16,6 @@
 
 	<properties>
 		<java.version>17</java.version>
-	</properties>
-
-	<properties>
 		<sonar.organization>endisl</sonar.organization>
 		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
 	</properties>
