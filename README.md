@@ -1,10 +1,12 @@
 ## Contribuições ao API REST Pessoas</h2>
 Foram realizadas as seguintes melhorias ao projeto:  
-- Escrita de testes unitários com JUnit, Hamcrest e Mockito para ter os seguintes benefícios:         
+- Testes unitários com JUnit, Hamcrest e Mockito para ter os seguintes benefícios:         
     - documentar o código,
     - facilitar manutenções futuras,
     - evoluir com segurança a API com novas features.
-- Verificação estática do código via SonarCloud (ver badge). 
+- Análise estática do código com SonarCloud (ver badge) para verificar:   
+    - a qualidade do código
+    - a segurança do código
 
 ## 
 
