@@ -1,3 +1,5 @@
+[![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-white.svg)](https://sonarcloud.io/summary/new_code?id=endisl_dio-people-api)
+
 ## Contribuições ao API REST Pessoas</h2>
 Foram realizadas as seguintes melhorias ao projeto:  
 - Testes unitários com JUnit, Hamcrest e Mockito para ter os seguintes benefícios:         
