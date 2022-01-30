@@ -105,8 +105,10 @@
 			<properties>
 				<sonar.organization>endisl</sonar.organization>
 				<sonar.host.url>https://sonarcloud.io/</sonar.host.url>
-				<sonar.exclusions>		
+				<sonar.exclusions>					
 					src/main/java/**/PersonapiApplication
+					.github/**
+					pom.xml
 					src/test/java/**		
 				</sonar.exclusions>
 			</properties>
