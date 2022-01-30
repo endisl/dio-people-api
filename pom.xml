@@ -15,13 +15,7 @@
 	<description>Person API project created for DIO</description>
 
 	<properties>
-		<java.version>11</java.version>
-		<sonar.organization>endisl</sonar.organization>
-		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
-		<sonar.exclusions>
-			src/main/java/**/PersonapiApplication
-			src/test/java/**
-		</sonar.exclusions>
+		<java.version>11</java.version>			
 	</properties>
 
 	<dependencies>
@@ -101,5 +95,62 @@
 			</plugin>
 		</plugins>
 	</build>
+	
+	<profiles>
+		<profile>
+			<id>sonar</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<sonar.organization>endisl</sonar.organization>
+				<sonar.host.url>https://sonarcloud.io/</sonar.host.url>
+				<sonar.exclusions>		
+					src/main/java/**/PersonapiApplication
+					src/test/java/**		
+				</sonar.exclusions>
+			</properties>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.jacoco</groupId>
+						<artifactId>jacoco-maven-plugin</artifactId>
+						<version>0.8.5</version>
+						<executions>
+							<execution>
+								<goals>
+									<goal>prepare-agent</goal>
+								</goals>
+							</execution>
+							<execution>
+								<id>report</id>
+								<phase>prepare-package</phase>
+								<goals>
+									<goal>report</goal>
+								</goals>
+							</execution>
+							<execution>
+								<id>jacoco-check</id>
+								<goals>
+									<goal>check</goal>
+								</goals>
+								<configuration>
+									<rules>
+										<rule>
+											<limits>
+												<limit>
+													<minimum>0.0</minimum>
+												</limit>
+											</limits>
+										</rule>
+									</rules>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 
 </project>
