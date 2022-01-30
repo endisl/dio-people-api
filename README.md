@@ -1,4 +1,4 @@
-[![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-white.svg)](https://sonarcloud.io/summary/new_code?id=endisl_dio-people-api)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=endisl_dio-people-api&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=endisl_dio-people-api)
 
 ## Contribuições ao API REST Pessoas</h2>
 Foram realizadas as seguintes melhorias ao projeto:  
